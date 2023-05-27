@@ -19,7 +19,8 @@ module.exports = {
     mumbai: {
       url: "https://endpoints.omniatech.io/v1/matic/mumbai/public",
       accounts: {
-        mnemonic: mnemonic,
+        mnemonic: mnemonic, // 助记词可以推导出多个账户
+        // path: "",  可以指定账户
       },
       chainId: 80001,
     },
