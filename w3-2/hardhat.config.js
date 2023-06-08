@@ -4,7 +4,8 @@ let dotenv = require("dotenv");
 dotenv.config({ path: "../.env" });
 
 const mnemonic = process.env.MNEMONIC;
-const scankey = process.env.SCAN_KEY_BSC;
+const dawn303 = process.env.DAWN303;
+const scankey = process.env.SCAN_KEY_MUMBAI;
 
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
@@ -17,10 +18,10 @@ module.exports = {
     },
 
     mumbai: {
-      url: "https://endpoints.omniatech.io/v1/matic/mumbai/public",
+      url: "https://polygon-mumbai.g.alchemy.com/v2/2uHAQ2unQ_WMGIpJlUlpLChckA-nj3As",
       accounts: {
         mnemonic: mnemonic, // 助记词可以推导出多个账户
-        // path: "",  // 可以指定账户
+        // path: "m/44'/60'/0'/0",
       },
       chainId: 80001,
     },
@@ -29,7 +30,6 @@ module.exports = {
       url: "https://data-seed-prebsc-2-s2.binance.org:8545/",
       accounts: {
         mnemonic: mnemonic, // 助记词可以推导出多个账户
-        path: "0x2b624faC1616D08684Cf1d21793c2f39CC1895a0", // 可以指定账户
       },
       chainId: 97,
     },
