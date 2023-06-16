@@ -4,6 +4,8 @@ pragma solidity ^0.8.9;
 import './interfaces/IUniswapV2Factory.sol';
 import './UniswapV2Pair.sol';
 
+// import 'hardhat/console.sol';
+
 contract UniswapV2Factory is IUniswapV2Factory {
     address public feeTo;
     address public feeToSetter;
