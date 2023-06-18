@@ -4,6 +4,8 @@ pragma solidity ^0.8.9;
 import '../core/interfaces/IUniswapV2Pair.sol';
 import "../core/libraries/SafeMath.sol";
 
+// import "hardhat/console.sol";
+
 library UniswapV2Library {
     using SafeMath for uint;
 
@@ -21,7 +23,7 @@ library UniswapV2Library {
             bytes1(0xff), 
             factory, 
             keccak256(abi.encodePacked(token0, token1)),
-            hex'c6a5642844aff438533a0753a20f9d900b06567408941e92a73a892c15d37fae' // init code hash: keccak256(bytecode)
+            hex'8f01ff9ac54240095557e39da28966945d65ccca43dcbc029c9c85b6c9641bcd' // init code hash: keccak256(bytecode)
         ));
         // 将最后 20 个字节的哈希值转换为地址
         pair = address(uint160(uint(pairHash)));
@@ -30,7 +32,7 @@ library UniswapV2Library {
     // fetches and sorts the reserves for a pair
     function getReserves(address factory, address tokenA, address tokenB) internal view returns (uint reserveA, uint reserveB) {
         (address token0,) = sortTokens(tokenA, tokenB);
-        (uint reserve0, uint reserve1,) = IUniswapV2Pair(pairFor(factory, tokenA, tokenB)).getReserves();
+        (uint reserve0, uint reserve1, ) = IUniswapV2Pair(pairFor(factory, tokenA, tokenB)).getReserves();
         (reserveA, reserveB) = tokenA == token0 ? (reserve0, reserve1) : (reserve1, reserve0);
     }
 

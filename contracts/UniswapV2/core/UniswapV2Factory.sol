@@ -4,7 +4,7 @@ pragma solidity ^0.8.9;
 import './interfaces/IUniswapV2Factory.sol';
 import './UniswapV2Pair.sol';
 
-// import 'hardhat/console.sol';
+import 'hardhat/console.sol';
 
 contract UniswapV2Factory is IUniswapV2Factory {
     address public feeTo;
@@ -27,6 +27,8 @@ contract UniswapV2Factory is IUniswapV2Factory {
         require(token0 != address(0), 'UniswapV2: ZERO_ADDRESS');
         require(getPair[token0][token1] == address(0), 'UniswapV2: PAIR_EXISTS'); // single check is sufficient
         bytes memory bytecode = type(UniswapV2Pair).creationCode;
+        console.log("factory create pair hash:");
+        console.logBytes32(keccak256(bytecode));
         bytes32 salt = keccak256(abi.encodePacked(token0, token1));
         assembly {
             pair := create2(0, add(bytecode, 32), mload(bytecode), salt)
